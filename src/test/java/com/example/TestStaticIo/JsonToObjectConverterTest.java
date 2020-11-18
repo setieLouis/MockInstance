@@ -18,11 +18,11 @@ public class JsonToObjectConverterTest {
 
 
     @Test
-    public void readAndConvertTest() throws IOException {
+    public void readAndConvertTest() {
 
         assertThatExceptionOfType(FileNotFoundException.class)
                 .isThrownBy( () ->
-                jsonToObjectConverter.convert("wrongPath", TestModel.class)
+                jsonToObjectConverter.convert("wrongPath", JsonModelContainer.ModelOne.class)
                  )
                 .withMessage("class path resource [wrongPath] cannot be resolved to absolute file path because it does not exist");
     }
@@ -30,7 +30,7 @@ public class JsonToObjectConverterTest {
     @Test
     public void readAndConvesrtTest() throws IOException {
 
-        TestModel model = jsonToObjectConverter.convert("json/TestMo.json", TestModel.class);
+        JsonModelContainer.ModelOne model = jsonToObjectConverter.convert("json/modelOne.json", JsonModelContainer.ModelOne.class);
 
         assertThat(model.getAttr1()).isEqualTo("value1");
         assertThat(model.getAttr2()).isEqualTo("value2");
