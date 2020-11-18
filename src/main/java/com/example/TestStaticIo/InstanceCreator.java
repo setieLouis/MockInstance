@@ -4,12 +4,12 @@ package com.example.TestStaticIo;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import static com.example.TestStaticIo.JsonToObjectConverter.*;
 
 public class InstanceCreator {
-
 
     Map<String , String> jsonFiles;
 
@@ -41,5 +41,21 @@ public class InstanceCreator {
     private String getFileName(String s) {
         String[] pathContent =  s.split("/");
         return pathContent[pathContent.length - 1].replace(".json","");
+    }
+
+
+    public static Builder instanceBuilder() {
+        return null;
+    }
+
+    public static class Builder{
+
+        public Builder add(String modelOne) {
+            return null;
+        }
+
+        public InstanceCreator build() {
+            return null;
+        }
     }
 }

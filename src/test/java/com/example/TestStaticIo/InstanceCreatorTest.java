@@ -20,13 +20,25 @@ public class InstanceCreatorTest {
     }
 
     @Test
-    public void createBeanByPathConstructorWithListFileTest() throws IOException {
+    public void createBeanByConstructorWithListFileTest() throws IOException {
 
         List<String> list = new ArrayList();
         list.add("json/modelOne.json");
         list.add("json/modelTwo.json");
 
         creator = new InstanceCreator(list);
+
+        assertTestModelOne(creator.getBean("modelOne", JsonModelContainer.ModelOne.class));
+        assertTestModelTwo(creator.getBean("modelTwo", JsonModelContainer.ModelTwo.class));
+    }
+    @Test
+    public void createBeanByConstructorBuilder() throws IOException {
+
+        creator =  InstanceCreator
+                .instanceBuilder()
+                .add("json/modelOne.json")
+                .add("json/modelTwo.json")
+                .build();
 
         assertTestModelOne(creator.getBean("modelOne", JsonModelContainer.ModelOne.class));
         assertTestModelTwo(creator.getBean("modelTwo", JsonModelContainer.ModelTwo.class));

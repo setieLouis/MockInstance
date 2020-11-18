@@ -1,5 +1,6 @@
 package com.example.TestStaticIo;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -15,6 +16,7 @@ public class JsonModelContainer {
                 private String attr3;
         }
 
+        @Builder
         @Data
         public static class  ModelTwo{
                 private String attr1;
