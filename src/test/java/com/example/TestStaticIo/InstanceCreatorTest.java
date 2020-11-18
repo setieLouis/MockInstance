@@ -2,6 +2,8 @@ package com.example.TestStaticIo;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class InstanceCreatorTest {
@@ -9,7 +11,7 @@ public class InstanceCreatorTest {
     InstanceCreator creator;
 
     @Test
-    public void createBeanByPathConstructor(){
+    public void createBeanByPathConstructor() throws IOException {
 
             creator = new InstanceCreator("json/TestModel.json");
 
