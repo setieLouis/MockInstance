@@ -2,7 +2,6 @@ package com.example.TestStaticIo;
 
 import lombok.Data;
 import org.junit.Before;
-
 import org.junit.Test;
 
 
@@ -37,15 +36,9 @@ public class JsonToObjectConverterTest {
 
         TestModel model = jsonToObjectConverter.convert("json/TestMo.json", TestModel.class);
 
-        assertThat(model.attr1).isEqualTo("value1");
-        assertThat(model.attr2).isEqualTo("value2");
-        assertThat(model.attr3).isEqualTo("value3");
+        assertThat(model.getAttr1()).isEqualTo("value1");
+        assertThat(model.getAttr2()).isEqualTo("value2");
+        assertThat(model.getAttr3()).isEqualTo("value3");
     }
 
-    @Data
-    static class TestModel{
-        private String attr1;
-        private String attr2;
-        private String attr3;
-    }
 }
