@@ -15,11 +15,7 @@ public class JsonToObjectConverterTest {
 
     JsonToObjectConverter jsonToObjectConverter;
 
-    @Before
-    public void setup(){
 
-        jsonToObjectConverter = new JsonToObjectConverter();
-    }
 
     @Test
     public void readAndConvertTest() throws IOException {

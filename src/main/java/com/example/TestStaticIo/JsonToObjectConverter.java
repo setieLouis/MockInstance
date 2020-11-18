@@ -2,6 +2,7 @@ package com.example.TestStaticIo;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.experimental.UtilityClass;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+@UtilityClass
 public class JsonToObjectConverter {
 
     public <T> T convert(String path, Class<T> clazz) throws IOException {
