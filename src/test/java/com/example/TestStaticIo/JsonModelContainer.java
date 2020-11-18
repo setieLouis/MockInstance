@@ -16,7 +16,6 @@ public class JsonModelContainer {
                 private String attr3;
         }
 
-        @Builder
         @Data
         public static class  ModelTwo{
                 private String attr1;

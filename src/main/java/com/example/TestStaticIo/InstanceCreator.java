@@ -2,10 +2,7 @@ package com.example.TestStaticIo;
 
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import static com.example.TestStaticIo.JsonToObjectConverter.*;
 
@@ -45,17 +42,23 @@ public class InstanceCreator {
 
 
     public static Builder instanceBuilder() {
-        return null;
+        return new Builder();
     }
 
     public static class Builder{
+        List<String> paths;
 
-        public Builder add(String modelOne) {
-            return null;
+        Builder(){
+            paths = new ArrayList();
         }
 
-        public InstanceCreator build() {
-            return null;
+        public Builder add(String path) {
+            paths.add(path);
+            return this;
+        }
+
+        public InstanceCreator build() throws IOException {
+            return new InstanceCreator(paths);
         }
     }
 }
