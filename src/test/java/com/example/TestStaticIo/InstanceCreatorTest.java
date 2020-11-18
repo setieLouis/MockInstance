@@ -22,17 +22,17 @@ public class InstanceCreatorTest {
     @Test
     public void createBeanByPathConstructorWithListFileTest() throws IOException {
 
-           List<String> list = new ArrayList();
-           list.add("json/modelOne.json");
-           list.add("json/TwoOne.json");
+        List<String> list = new ArrayList();
+        list.add("json/modelOne.json");
+        list.add("json/modelTwo.json");
 
-           creator = new InstanceCreator(list);
+        creator = new InstanceCreator(list);
 
         assertTestModelOne(creator.getBean("modelOne", JsonModelContainer.ModelOne.class));
         assertTestModelTwo(creator.getBean("modelTwo", JsonModelContainer.ModelTwo.class));
     }
 
-    private void assertTestModelOne(JsonModelContainer.ModelOne model){
+    private void assertTestModelOne(JsonModelContainer.ModelOne model) {
 
         assertThat(model).isNotNull();
         assertThat(model.getAttr1()).isEqualTo("value1");
@@ -40,7 +40,7 @@ public class InstanceCreatorTest {
         assertThat(model.getAttr3()).isEqualTo("value3");
     }
 
-    private void assertTestModelTwo(JsonModelContainer.ModelTwo model){
+    private void assertTestModelTwo(JsonModelContainer.ModelTwo model) {
 
         assertThat(model).isNotNull();
         assertThat(model.getAttr1()).isEqualTo("value1");
