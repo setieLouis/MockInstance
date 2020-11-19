@@ -1,16 +1,17 @@
-package com.example.TestStaticIo;
+package com.instance.creator;
 
 
 import java.io.IOException;
-import java.util.*;
-
-import static com.example.TestStaticIo.JsonToObjectConverter.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InstanceCreator {
 
     Map<String , String> jsonFiles;
 
-    InstanceCreator(){
+    private InstanceCreator() {
         jsonFiles = new HashMap<>();
     }
 
@@ -24,7 +25,6 @@ public class InstanceCreator {
         for (String fileName : list)
             create(fileName);
     }
-
 
     /**
      *
@@ -66,39 +66,49 @@ public class InstanceCreator {
     }
 
     /**
-     *
      * @return
      */
-    public static String byClassTypeBuilder(){
+    public static String byClassTypeBuilder() {
         // TODO not yet implemented
         return null;
     }
 
-
-
-    public <T> T getBean( String name, Class<T> tClass) throws IOException {
-        return convertJson(jsonFiles.get(name),tClass) ;
+    public <T> T getBean(String name, Class<T> tClass) throws IOException {
+        return JsonToObjectConverter.convertJson(jsonFiles.get(name), tClass);
     }
 
     private void create(String s) throws IOException {
-        String fileContent =  retrieveJsonFile(s);
+        String fileContent = JsonToObjectConverter.retrieveJsonFile(s);
         String fileName = getFileName(s);
-        jsonFiles.put(fileName,fileContent);
+        jsonFiles.put(fileName, fileContent);
     }
 
 
-    public static class FileBuilder{
+    private String getFileName(String s) {
+        String[] pathContent = s.split("/");
+        return pathContent[pathContent.length - 1].replace(".json", "");
+    }
+
+    public static class FileBuilder {
         List<String> paths;
 
-        FileBuilder(){
-            paths = new ArrayList();
+        FileBuilder() {
+            paths = new ArrayList<>();
         }
 
+        /**
+         * @param path
+         * @return
+         */
         public FileBuilder add(String path) {
             paths.add(path);
             return this;
         }
 
+        /**
+         * @return
+         * @throws IOException
+         */
         public InstanceCreator build() throws IOException {
             return new InstanceCreator(paths);
         }
@@ -107,10 +117,5 @@ public class InstanceCreator {
             paths.addAll(list);
             return this;
         }
-    }
-
-    private String getFileName(String s) {
-        String[] pathContent =  s.split("/");
-        return pathContent[pathContent.length - 1].replace(".json","");
     }
 }

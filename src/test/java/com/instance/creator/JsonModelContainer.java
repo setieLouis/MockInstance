@@ -1,6 +1,5 @@
-package com.example.TestStaticIo;
+package com.instance.creator;
 
-import lombok.Builder;
 import lombok.Data;
 
 /**

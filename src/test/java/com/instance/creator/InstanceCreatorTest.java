@@ -1,4 +1,4 @@
-package com.example.TestStaticIo;
+package com.instance.creator;
 
 import org.junit.Test;
 
