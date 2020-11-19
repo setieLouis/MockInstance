@@ -1,6 +1,6 @@
 package com.instance.creator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,8 +41,7 @@ public class InstanceCreatorTest {
     @Test
     public void fileConstructorBuilder() throws IOException {
 
-        creator =
-                InstanceCreator
+        creator = InstanceCreator
                 .byFileBuilder()
                 .add(JSON_MODEL_ONE_JSON)
                 .add(JSON_MODEL_TWO_JSON)
@@ -55,8 +54,7 @@ public class InstanceCreatorTest {
     @Test
     public void fileConstructorBuilderList() throws IOException {
 
-        creator =
-                InstanceCreator
+        creator = InstanceCreator
                 .byFileBuilder()
                 .addAll(Collections.singletonList(JSON_MODEL_ONE_JSON))
                 .add(JSON_MODEL_TWO_JSON)
