@@ -10,38 +10,45 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class InstanceCreatorTest {
 
+    public static final String JSON_MODEL_ONE_JSON = "json/modelOne.json";
+    public static final String JSON_MODEL_TWO_JSON = "json/modelTwo.json";
+    public static final String MODEL_ONE = "modelOne";
+    public static final String MODEL_TWO = "modelTwo";
+
     InstanceCreator creator;
 
     @Test
     public void createBeanByPathConstructor() throws IOException {
 
-        creator = new InstanceCreator("json/modelOne.json");
-        assertTestModelOne(creator.getBean("modelOne", JsonModelContainer.ModelOne.class));
+        creator = new InstanceCreator(JSON_MODEL_ONE_JSON);
+        assertTestModelOne(creator.getBean(MODEL_ONE, JsonModelContainer.ModelOne.class));
     }
 
     @Test
     public void createBeanByConstructorWithListFileTest() throws IOException {
 
         List<String> list = new ArrayList();
-        list.add("json/modelOne.json");
-        list.add("json/modelTwo.json");
+        list.add(JSON_MODEL_ONE_JSON);
+        list.add(JSON_MODEL_TWO_JSON);
 
         creator = new InstanceCreator(list);
 
-        assertTestModelOne(creator.getBean("modelOne", JsonModelContainer.ModelOne.class));
-        assertTestModelTwo(creator.getBean("modelTwo", JsonModelContainer.ModelTwo.class));
+        assertTestModelOne(creator.getBean(MODEL_ONE, JsonModelContainer.ModelOne.class));
+        assertTestModelTwo(creator.getBean(MODEL_TWO, JsonModelContainer.ModelTwo.class));
     }
+
     @Test
     public void createBeanByConstructorBuilder() throws IOException {
 
-        creator =  InstanceCreator
-                .instanceBuilder()
-                .add("json/modelOne.json")
-                .add("json/modelTwo.json")
+        creator =
+                InstanceCreator
+                .instanceBuilderByFile()
+                .add(JSON_MODEL_ONE_JSON)
+                .add(JSON_MODEL_TWO_JSON)
                 .build();
 
-        assertTestModelOne(creator.getBean("modelOne", JsonModelContainer.ModelOne.class));
-        assertTestModelTwo(creator.getBean("modelTwo", JsonModelContainer.ModelTwo.class));
+        assertTestModelOne(creator.getBean(MODEL_ONE, JsonModelContainer.ModelOne.class));
+        assertTestModelTwo(creator.getBean(MODEL_TWO, JsonModelContainer.ModelTwo.class));
     }
 
     private void assertTestModelOne(JsonModelContainer.ModelOne model) {
@@ -58,5 +65,4 @@ public class InstanceCreatorTest {
         assertThat(model.getAttr1()).isEqualTo("value1");
         assertThat(model.getAttr2()).isEqualTo("value2");
     }
-
 }

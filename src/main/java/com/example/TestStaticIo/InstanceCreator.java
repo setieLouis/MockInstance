@@ -35,24 +35,19 @@ public class InstanceCreator {
         jsonFiles.put(fileName,fileContent);
     }
 
-    private String getFileName(String s) {
-        String[] pathContent =  s.split("/");
-        return pathContent[pathContent.length - 1].replace(".json","");
+
+    public static FileBuilder instanceBuilderByFile() {
+        return new FileBuilder();
     }
 
-
-    public static Builder instanceBuilder() {
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class FileBuilder{
         List<String> paths;
 
-        Builder(){
+        FileBuilder(){
             paths = new ArrayList();
         }
 
-        public Builder add(String path) {
+        public FileBuilder add(String path) {
             paths.add(path);
             return this;
         }
@@ -61,4 +56,10 @@ public class InstanceCreator {
             return new InstanceCreator(paths);
         }
     }
+
+    private String getFileName(String s) {
+        String[] pathContent =  s.split("/");
+        return pathContent[pathContent.length - 1].replace(".json","");
+    }
+
 }
