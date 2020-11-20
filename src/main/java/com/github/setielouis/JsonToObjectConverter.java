@@ -1,4 +1,4 @@
-package com.instance.creator;
+package com.github.setielouis;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
